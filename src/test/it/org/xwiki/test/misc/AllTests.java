@@ -45,7 +45,7 @@ public class AllTests extends TestCase
         // think the tests are all running fine. I haven't found a simple solution to this yet
         // (there are complex solutions like searching for all tests by parsing the source tree).
         // I think there are TestSuite that do this out there but I haven't looked for them yet.
-        System.setProperty("xwiki.test.baseURL", "http://xwiki-postgres-tomcat-web");
+        System.setProperty("xwiki.test.baseURL", "http://xwiki-web");
 	//addTestCase(suite, PDFTest.class);
         addTestCase(suite, SuggestTest.class);
 

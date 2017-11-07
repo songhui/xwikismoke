@@ -42,7 +42,8 @@ public class SuggestTest extends TestCase
 
     public void testSuggestWithNonexistingContextDocument() throws Exception
     {
-        URL url = new URL("http://xwiki-postgres-tomcat-web:8080/xwiki/bin/view/NonExistingSpace/NonexistingPage"
+        String baseURL = System.getProperty("xwiki.test.baseURL");
+        URL url = new URL(baseURL+":8080/xwiki/bin/view/NonExistingSpace/NonexistingPage"
             + "?xpage=suggest&classname=XWiki.TagClass&fieldname=tags&firCol=%2D&secCol=%2D&input=test");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         InputStream is = connection.getInputStream();
