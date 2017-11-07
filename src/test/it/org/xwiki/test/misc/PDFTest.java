@@ -62,7 +62,7 @@ public class PDFTest extends TestCase
         // property which was mistaken with the title property of XWiki.PDFClass before XWIKI-7048 was fixed. The gadget
         // title contains Velocity code that isn't wrapped in a Velocity macro so it is printed as is if not rendered in
         // the right context.
-        String text = getPDFContent(new URL("http://xwiki:8080/xwiki/bin/export/Dashboard/WebHome?format=pdf"));
+        String text = getPDFContent(new URL("http://xwiki-postgres-tomcat-web:8080/xwiki/bin/export/Dashboard/WebHome?format=pdf"));
         // Note: This is the title of the Pages gadget when it's working
         assertTrue("Invalid content", text.contains("Pages"));
         // Note: This is the title of the Pages gadget before XWIKI-7048 was fixed
@@ -76,10 +76,10 @@ public class PDFTest extends TestCase
      */
     public void testExportContentWithAttachmentLink() throws Exception
     {
-        URL pdfExportURL = new URL("http://xwiki:8080/xwiki/bin/export/Sandbox/WebHome?format=pdf");
+        URL pdfExportURL = new URL("http://xwiki-postgres-tomcat-web:8080/xwiki/bin/export/Sandbox/WebHome?format=pdf");
         Map<String, String> urls = extractURLs(pdfExportURL);
         assertTrue(urls.containsKey("XWikiLogo.png"));
-        assertEquals("http://xwiki:8080/xwiki/bin/download/Sandbox/WebHome/XWikiLogo.png",
+        assertEquals("http://xwiki-postgres-tomcat-web:8080/xwiki/bin/download/Sandbox/WebHome/XWikiLogo.png",
             urls.get("XWikiLogo.png"));
 
         // Ideally we should be asserting for a value of 1 (for the embedded XWikiLogo.png image) but it seems the PDF
@@ -96,7 +96,7 @@ public class PDFTest extends TestCase
     public void testTableOfContents() throws Exception
     {
         Map<String, String> internalLinks = extractToLinks(new URL(
-            "http://xwiki:8080/xwiki/bin/export/Sandbox/WebHome" + "?format=pdf&pdftoc=1&attachments=1&pdfcover=0"),
+            "http://xwiki-postgres-tomcat-web:8080/xwiki/bin/export/Sandbox/WebHome" + "?format=pdf&pdftoc=1&attachments=1&pdfcover=0"),
             0);
         // Make sure we have a Table of Contents.
         assertTrue(internalLinks.containsKey("Mixed list"));
